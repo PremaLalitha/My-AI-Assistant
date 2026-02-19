@@ -1,56 +1,88 @@
-# Notion-Style AI Assistant (Mistral AI)
+# 🤖 AI Assistant – Mistral AI Chatbot
 
-A professional, feature-rich AI chatbot built with Flask and Mistral AI, featuring a clean Notion-inspired UI, markdown rendering, and session-based conversation history.
+A clean and minimalist AI chatbot built using **Mistral AI API**.
+This application allows users to interact with an AI assistant through a simple web interface.
 
-![Preview](https://via.placeholder.com/800x400?text=AI+Assistant+Preview) <!-- Replace with real screenshot if possible -->
+---
 
-## ✨ Features
-- **🧠 Mistral AI Powered**: Intelligent responses using `mistral-small-latest`.
-- **📝 Markdown Support**: Full rendering of bold text, lists, and code blocks.
-- **💻 Syntax Highlighting**: Professional code formatting for multiple languages.
-- **🕒 Conversation History**: remembers context within each session.
-- **🎨 Notion UI**: Minimalist, high-end design with light/dark mode.
-- **📱 Responsive**: works perfectly on desktop and mobile.
-- **🚀 Deployment Ready**: Includes Docker and Procfile for instant hosting.
+## Project Overview
 
-## 🛠️ Setup Instructions
+The project demonstrates how to integrate an AI model with a web application.
+Users can send messages to the chatbot, and the application processes the request using the Mistral AI API and returns intelligent responses in real time.
 
-### 1. Prerequisites
-- Python 3.8+
-- Mistral AI API Key
+---
 
-### 2. Installation
-```bash
-# Clone the repository (or copy files)
-cd ChatBot
+## Features
 
-# Install dependencies
+* Real-time AI chat responses
+* Secure API key handling using `.env`
+* Simple and responsive UI
+* Easy deployment on cloud platforms
+
+---
+
+## Technologies Used
+
+* Python
+* Mistral AI API
+* HTML
+* CSS
+* JavaScript
+* Render (Deployment)
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone the Repository
+
+```
+git clone https://github.com/PremaLalitha/your-repository-name.git
+cd your-repository-name
+```
+
+### 2. Install Required Packages
+
+```
 pip install -r requirements.txt
 ```
 
-### 3. Configuration
-Create a `.env` file in the root directory:
-```env
+### 3. Add API Key
+
+Create a `.env` file in the root folder and add:
+
+```
 MISTRAL_API_KEY=your_api_key_here
-FLASK_SECRET_KEY=your_random_secret_here
 ```
 
-### 4. Run the App
-```bash
+### 4. Run the Application
+
+```
 python app.py
 ```
-Visit `http://localhost:5000` in your browser.
 
-## 🐳 Running with Docker
-```bash
-docker-compose up --build
+Open your browser and go to:
+
+```
+http://127.0.0.1:5000
 ```
 
-## 🚀 Deployment (Render/Railway/Heroku)
-1. Push your code to GitHub (Note: ensure `.env` is ignored!).
-2. Connect your repository to the deployment platform.
-3. Set your **Environment Variables** (`MISTRAL_API_KEY`, etc.) in the platform's dashboard.
-4. The platform will use the `Procfile` or `Dockerfile` automatically.
+---
 
-## 📄 License
-MIT
+## Deployment
+
+The project can be deployed on **Render**:
+
+1. Push the project to GitHub
+2. Connect the repository to Render
+3. Add `MISTRAL_API_KEY` in the Environment Variables
+4. Deploy the application
+
+---
+
+## Important Note
+
+Do NOT upload the `.env` file to GitHub.
+Add `.env` to your `.gitignore` file to keep your API key secure.
+
+
