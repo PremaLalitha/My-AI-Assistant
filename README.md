@@ -1,4 +1,4 @@
-# 🤖 AI Assistant – Mistral AI Chatbot
+# AI Assistant – Mistral AI Chatbot
 
 A clean and minimalist AI chatbot built using **Mistral AI API**.
 This application allows users to interact with an AI assistant through a simple web interface.
