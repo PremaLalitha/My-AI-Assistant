@@ -1,4 +1,5 @@
 # AI Assistant – Mistral AI Chatbot
+## 🔗 Live Demo: https://my-ai-assistant-v2xr.onrender.com
 
 A clean and minimalist AI chatbot built using **Mistral AI API**.
 This application allows users to interact with an AI assistant through a simple web interface.
