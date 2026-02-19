@@ -1,0 +1,328 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+:root {
+    --notion-bg: #ffffff;
+    --notion-bg-sidebar: #f7f6f3;
+    --notion-text: #37352f;
+    --notion-text-light: #6b6b6b;
+    --notion-gray: #e9e9e7;
+    --notion-gray-hover: #efefef;
+    --notion-blue: #0b6b99;
+    --notion-blue-light: #ebf4f9;
+    --notion-border: #e9e9e7;
+    --notion-shadow: rgba(15, 15, 15, 0.05);
+}
+
+[data-theme="light"] {
+    --bg-primary: var(--notion-bg);
+    --bg-secondary: #ffffff;
+    --bg-sidebar: var(--notion-bg-sidebar);
+    --text-primary: var(--notion-text);
+    --text-secondary: var(--notion-text-light);
+    --border-color: var(--notion-border);
+    --accent-color: var(--notion-blue);
+    --accent-bg: var(--notion-blue-light);
+    --message-bot-bg: #f7f6f3;
+    --message-user-bg: var(--notion-blue);
+    --input-bg: var(--notion-bg);
+    --shadow-color: var(--notion-shadow);
+    --hover-bg: var(--notion-gray-hover);
+}
+
+[data-theme="dark"] {
+    --bg-primary: #2f2f2f;
+    --bg-secondary: #373737;
+    --bg-sidebar: #202020;
+    --text-primary: #e9e9e9;
+    --text-secondary: #b0b0b0;
+    --border-color: #4a4a4a;
+    --accent-color: #7cb4db;
+    --accent-bg: #3a4a5a;
+    --message-bot-bg: #3a3a3a;
+    --message-user-bg: #0b6b99;
+    --input-bg: #2f2f2f;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --hover-bg: #454545;
+}
+
+body {
+    background: var(--bg-primary);
+    min-height: 100vh;
+    color: var(--text-primary);
+    transition: background 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-primary);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    overflow: hidden;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+    position: relative;
+}
+
+/* Header */
+.header {
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.bot-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.bot-info h2 {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.header-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn,
+.theme-btn {
+    background: transparent;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.action-btn:hover,
+.theme-btn:hover {
+    background: var(--hover-bg);
+    color: var(--text-primary);
+}
+
+/* Chat Box */
+.chat-box {
+    flex: 1;
+    padding: 2rem 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.chat-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+.message {
+    display: flex;
+    gap: 1rem;
+    max-width: 90%;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.user.message {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.avatar-small {
+    width: 28px;
+    height: 28px;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.text {
+    padding: 0.4rem 0.2rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    width: 100%;
+}
+
+/* User message bubble style */
+.user .text {
+    background: var(--accent-bg);
+    padding: 0.6rem 1rem;
+    border-radius: 12px 12px 2px 12px;
+    max-width: fit-content;
+}
+
+/* Markdown Context */
+.text pre {
+    background: #1e1e1e;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    overflow-x: auto;
+}
+
+.text code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.85rem;
+}
+
+.text p {
+    margin-bottom: 0.75rem;
+}
+
+.text ul,
+.text ol {
+    margin-left: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.text h1,
+.text h2,
+.text h3 {
+    margin: 1rem 0 0.5rem;
+}
+
+/* Typing Indicator */
+.typing {
+    display: none;
+    padding: 0.5rem 1.5rem;
+    margin-left: 2.8rem;
+    gap: 4px;
+}
+
+.typing span {
+    width: 6px;
+    height: 6px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+    animation: bounce 1.4s infinite;
+    opacity: 0.4;
+}
+
+@keyframes bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0.6);
+    }
+
+    40% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* Input Area */
+.input-area {
+    padding: 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    background: var(--bg-primary);
+}
+
+.notion-input {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.notion-input:focus {
+    border-color: var(--accent-color);
+}
+
+.notion-send-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+}
+
+.notion-send-btn:hover {
+    opacity: 0.9;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        position: absolute;
+        height: 100%;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar.collapsed {
+        transform: translateX(-100%);
+    }
+}
