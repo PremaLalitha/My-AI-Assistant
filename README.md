@@ -1,22 +1,37 @@
-# AI Assistant – Mistral AI Chatbot
+# AI Assistant (Mistral AI)
 
-A simple AI chatbot built using the Mistral AI API. Users can chat with the assistant through a clean and responsive web interface.
+A clean, minimalist AI chatbot built with Flask and Mistral AI.
 
-## Features
+## 🚀 Live Demo
 
-- Real-time AI responses
-- Simple and responsive UI
+[https://my-ai-assistant-v2xr.onrender.com](https://my-ai-assistant-v2xr.onrender.com)
+
+## ✨ Features
+
+- Real-time AI responses using Mistral AI
+- Automatic model fallbacks to handle API rate limits
+- Simple, dark mode toggle responsive UI
 - Secure API key handling
-- Easy deployment
 
-## Technologies Used
+## 🛠️ Quick Start
 
-- Python
-- Mistral AI API
-- HTML
-- CSS
-- JavaScript
+1. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## Live Demo
+2. **Set API Key**:
+   Create a `.env` file and add:
+   ```env
+   MISTRAL_API_KEY=your_api_key_here
+   ```
 
-https://my-ai-assistant-v2xr.onrender.com
+3. **Run App**:
+   ```bash
+   python app.py
+   ```
+
+## 🚀 Deployment
+
+- **Hosting**: Recommended on [Render.com](https://render.com).
+- **Setup**: Link your GitHub repository and set `MISTRAL_API_KEY` in the Environment Variables tab on Render.

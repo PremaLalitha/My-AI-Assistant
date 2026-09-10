@@ -45,10 +45,20 @@ def chat():
         session['history'] = session['history'][-10:]
 
     try:
-        response = client.chat.complete(
-            model="mistral-small-latest",
-            messages=session['history']
-        )
+        # Try open-mistral-nemo first, fallback to open-mistral-7b if rate limited
+        try:
+            response = client.chat.complete(
+                model="open-mistral-nemo",
+                messages=session['history']
+            )
+        except Exception as e:
+            if "429" in str(e) or "rate_limited" in str(e):
+                response = client.chat.complete(
+                    model="open-mistral-7b",
+                    messages=session['history']
+                )
+            else:
+                raise e
 
         reply = response.choices[0].message.content
         
@@ -57,9 +67,13 @@ def chat():
         session.modified = True 
 
     except Exception as e:
-        reply = f"Error: {str(e)}"
+        if "429" in str(e) or "rate_limited" in str(e):
+            reply = "Rate limit reached. Please wait a few seconds and try again."
+        else:
+            reply = f"Error: {str(e)}"
 
     return jsonify({"reply": reply})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Avoid Flask's reloader/signal handling when running under other runners (e.g., Streamlit).
+    app.run(debug=True, use_reloader=False)
