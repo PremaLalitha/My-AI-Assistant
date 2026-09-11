@@ -44,33 +44,41 @@ def chat():
     if len(session['history']) > 10:
         session['history'] = session['history'][-10:]
 
-    try:
-        # Try open-mistral-nemo first, fallback to open-mistral-7b if rate limited
+    # List of models to try in case of rate limits
+    models_to_try = ["open-mistral-nemo", "ministral-8b-latest", "open-mistral-7b"]
+    response = None
+    last_exception = None
+
+    for model_name in models_to_try:
         try:
             response = client.chat.complete(
-                model="open-mistral-nemo",
+                model=model_name,
                 messages=session['history']
             )
+            break
         except Exception as e:
-            if "429" in str(e) or "rate_limited" in str(e):
-                response = client.chat.complete(
-                    model="open-mistral-7b",
-                    messages=session['history']
-                )
+            last_exception = e
+            status_code = getattr(e, "status_code", None)
+            err_str = str(e).lower()
+            # If rate limited (429), try the next fallback model
+            if status_code == 429 or "429" in err_str or "rate_limited" in err_str:
+                continue
             else:
-                raise e
+                # Non-rate-limit exception (e.g., auth error), stop trying
+                break
 
+    if response:
         reply = response.choices[0].message.content
-        
         # Add assistant reply to history
         session['history'].append({"role": "assistant", "content": reply})
-        session.modified = True 
-
-    except Exception as e:
-        if "429" in str(e) or "rate_limited" in str(e):
+        session.modified = True
+    else:
+        status_code = getattr(last_exception, "status_code", None) if last_exception else None
+        err_str = str(last_exception).lower() if last_exception else ""
+        if status_code == 429 or "429" in err_str or "rate_limited" in err_str:
             reply = "Rate limit reached. Please wait a few seconds and try again."
         else:
-            reply = f"Error: {str(e)}"
+            reply = f"Error: {str(last_exception)}"
 
     return jsonify({"reply": reply})
 
