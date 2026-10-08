@@ -2,9 +2,6 @@
 
 A clean, minimalist AI chatbot built with Flask and Mistral AI.
 
-## 🚀 Live Demo
-
-[https://my-ai-assistant-v2xr.onrender.com](https://my-ai-assistant-v2xr.onrender.com)
 
 ## ✨ Features
 
