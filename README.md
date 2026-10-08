@@ -28,7 +28,4 @@ A clean, minimalist AI chatbot built with Flask and Mistral AI.
    python app.py
    ```
 
-## 🚀 Deployment
 
-- **Hosting**: Recommended on [Render.com](https://render.com).
-- **Setup**: Link your GitHub repository and set `MISTRAL_API_KEY` in the Environment Variables tab on Render.
